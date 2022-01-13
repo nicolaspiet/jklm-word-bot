@@ -31,4 +31,9 @@ instant_typing = True/False
 ```
 <br/>
 
+# Bot Demonstrations
+__Bot with long_words and instant_typing defined to False:__<br/><br/>
+![Alt Text](https://media3.giphy.com/media/o4th7luaOHKE5VSNCP/giphy.gif?cid=790b76111d9a71f16cf4156156fae80597969b954e602ddf&rid=giphy.gif&ct=g)<br/><br/>
+__Bot with long_words and instant_typing defined to True:__<br/><br/>
+![Alt Text](https://media1.giphy.com/media/kpj8Y6kZY2M9rX1JPV/giphy.gif?cid=790b76111cd4ef924a3ee94fea352194116eae4ccdda2ff9&rid=giphy.gif&ct=g)
 # Enjoy the bot!
