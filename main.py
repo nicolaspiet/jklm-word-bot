@@ -7,10 +7,10 @@ from time import sleep
 global length
 bomb_x = ""
 bomb_y = ""
-delays = [0.001, 0.001, 0.001, 0.002, 0.003]
+delays = [0.1, 0.03, 0.1, 0.03, 0.3]
 long_words = False
 instant_typing = False
-
+pyautogui.PAUSE = 0
 
 with open('wordlist.txt') as word_file:
     valid_words = set(word_file.read().split())
@@ -29,10 +29,12 @@ def release(key):
             with pyautogui.hold('ctrl'):
                 pyautogui.press(['c'])
             pyautogui.click(x=bomb_x - 100, y=bomb_y)
+            sleep(0.1)
             syllabe = pyperclip.paste()
             final = syllabe.lower().strip()
             pyperclip.copy('')
             found_words = []
+            sleep(0.1)
             for i in valid_words:
                 if i.find(final) != -1:
                     found_words.append(i)
@@ -52,7 +54,7 @@ def release(key):
             if instant_typing:
                 pyperclip.copy(f'{final_word}')
                 with pyautogui.hold('ctrl'):
-                    pyautogui.press(['v'])
+                    pyautogui.press(['v'])   
             else:
                 for w in final_word:
                     delay = random.choice(delays)
