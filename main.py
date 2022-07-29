@@ -2,15 +2,16 @@ from pynput.keyboard import Listener, Key
 import pyautogui
 import pyperclip
 import random
-from time import sleep
+import time
+import sys, os
 
 global length
 bomb_x = ""
 bomb_y = ""
-delays = [0.001, 0.001, 0.001, 0.002, 0.003]
-long_words = False
-instant_typing = False
-
+delays = [0.07, 0.03, 0.08, 0.07, 0.5]
+long_words = True
+instant_typing = True
+pyautogui.PAUSE = 0
 
 with open('wordlist.txt') as word_file:
     valid_words = set(word_file.read().split())
@@ -22,17 +23,21 @@ def release(key):
         try:
             bomb_x, bomb_y = pyautogui.position()
         except Exception as err:
-            print(f"Something went wrong: {err}")
+            exc_type, exc_obj, exc_tb = sys.exc_info()
+            fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+            print(exc_type, fname, exc_tb.tb_lineno)
     if key == Key.f4:
         try:
             pyautogui.click(x=bomb_x, y=bomb_y, clicks=2)
             with pyautogui.hold('ctrl'):
                 pyautogui.press(['c'])
             pyautogui.click(x=bomb_x - 100, y=bomb_y)
+            time.sleep(0.1)
             syllabe = pyperclip.paste()
             final = syllabe.lower().strip()
             pyperclip.copy('')
             found_words = []
+            time.sleep(0.1)
             for i in valid_words:
                 if i.find(final) != -1:
                     found_words.append(i)
@@ -57,11 +62,14 @@ def release(key):
                 for w in final_word:
                     delay = random.choice(delays)
                     pyautogui.write(w, delay)
-            sleep(0.1)
+            time.sleep(0.1)
             pyautogui.press('enter')
             print(found_words[choice])
-        except Exception as err:
-            print(f'Something went wrong: {err}')
+        except Exception as e:
+            exc_type, exc_obj, exc_tb = sys.exc_info()
+            fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+            print(exc_type, fname, exc_tb.tb_lineno)
+            
             return True
 
 
