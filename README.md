@@ -1,4 +1,4 @@
-# Word Bot for JKLM Bomb Party
+# Word Bot for JKLM Bomb Party [WORKING]
 A bot for Bomb Party on https://www.jklm.fun (Only English)
 
 <h1>Requirements</h1>
